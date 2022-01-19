@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Signup Form</title>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h2>Signup Form</h2>
+
+    </div>
+    <form id="form" class="form" onsubmit="AddRow()">
+      <div class="form-control">
+        <label for="name">First Name</label>
+        <input type="text" placeholder="First Name" id="fname" />
+        <small>Error message</small>
+      </div>
+
+      <div class="form-control">
+        <label for="name">Last Name</label>
+        <input type="text" placeholder="Last Name" id="lname" />
+        <small>Error message</small>
+      </div>
+
+      <div class="form-control">
+        <label for="name">Email ID</label>
+        <input type="email" placeholder="abc123@domain.com" id="email" />
+        <small>Error message</small>
+      </div>
+
+      <div class="form-control">
+        <label for="name">Mobile Number</label>
+        <input type="phone" placeholder="0123456789" id="mobile" />
+        <small>Error message</small>
+      </div>
+
+      <div class="form-control">
+        <label for="name">Password</label>
+        <input type="password" placeholder="Password" id="password"/>
+        <small>Error message</small>
+      </div>
+
+      <div class="form-control">
+        <label for="name">Confirm Password</label>
+        <input type="password" placeholder="Verify Password " id="password2"/>
+        <small>Error message</small>
+      </div>
+
+      <button>Submit</button>
+    </form>
+    
+  </div>
+  
+  <table id="show">
+			
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Mobile Number</th>
+    </tr>
+  
+</table>
+
+<script src="index.js">
+  
+</script>
+</body>
+</html>
