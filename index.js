@@ -41,8 +41,14 @@ const fsubmit = e => {
 
 
 form.addEventListener('submit', e => {
+  btnClear.click();
+  inputs.forEach(input=> input.value='');
+
 	e.preventDefault();
 	checkInputs();
+  // btnClear.addEventListener('click', ()=>{
+  //   inputs.forEach(input=> input.value='');
+  // })
 });
 
 
@@ -118,9 +124,7 @@ function checkInputs() {
 	
 	if(password2Value === '') {
 		setErrorFor(password2, "Password can't be blank");
-	}else if(password2Value<8){
-    setErrorFor(password2,"Password should be of minimum 8 characters")
-  }
+	}
   else if(passwordValue !== password2Value) {
 		setErrorFor(password2, 'Password does not match');
 	} else{
@@ -161,11 +165,15 @@ function checkInputs() {
 
   n++;
   x++;
-
-  btnClear.addEventListener('click', ()=>{
-    inputs.forEach(input=> input.value='');
-  })
+  
+  if(inputs===''){
+    // btnClear.addEventListener('click', ()=>{
+    //   inputs.forEach(input=> input.value='');
+    // })
+  }
+  
 }
+
 
 
   // function onDelete(){
