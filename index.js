@@ -1,3 +1,5 @@
+var selectedRow= null;
+
 const form = document.getElementById('form');
 const firstname = document.getElementById('fname');
 const lastname = document.getElementById('lname');
@@ -14,7 +16,7 @@ form.addEventListener('submit', e => {
 
 
 function checkInputs() {
-	// trim to remove the whitespaces
+	
 	const firstnameValue = firstname.value.trim();
   const lastnameValue = lastname.value.trim();
   const mobileValue = mobile.value.trim();
@@ -36,14 +38,18 @@ function checkInputs() {
 	
 	if(firstnameValue === '') {
     setErrorFor(firstname, "Enter a valid name")
-  } 
+  } else if(firstnameValue.length<=2){
+    setErrorFor(firstname, "First Name min 3 characters")
+  }
   else {
 		setSuccessFor(firstname);
 	}
 
   if(lastnameValue === '') {
 		setErrorFor(lastname, "Enter a valid name");
-	} 
+	} else if(lastnameValue.length<=2){
+    setErrorFor(lastname, "Last Name min 3 characters")
+  }
   else {
 		setSuccessFor(lastname);
 	}
@@ -57,6 +63,7 @@ function checkInputs() {
 	}
 
   function isEmail(email) {
+    
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
   }
 
@@ -70,19 +77,25 @@ function checkInputs() {
 	
 	if(passwordValue === '') {
 		setErrorFor(password, "Password can't be blank");
-	}
+	}else if(passwordValue.length<8){
+    setErrorFor(password, "Minimum password length should be 8 characters")
+  }
   else {
 		setSuccessFor(password);
 	}
 	
 	if(password2Value === '') {
 		setErrorFor(password2, "Password can't be blank");
-	} else if(passwordValue !== password2Value) {
+	}else if(password2Value<8){
+    setErrorFor(password2,"Password should be of minimum 8 characters")
+  }
+  else if(passwordValue !== password2Value) {
 		setErrorFor(password2, 'Password does not match');
 	} else{
 		setSuccessFor(password2);
 	}
 
+}
     var list1 = [];
 		var list2 = [];
 		var list3 = [];
@@ -91,7 +104,7 @@ function checkInputs() {
 		var n = 1;
 		var x = 0;
 
-function AddRow(){
+  function AddRow(){
 
   var AddRown = document.getElementById('show');
   var NewRow = AddRown.insertRow(n);
@@ -105,6 +118,9 @@ function AddRow(){
   var cell2 = NewRow.insertCell(1);
   var cell3 = NewRow.insertCell(2);
   var cell4 = NewRow.insertCell(3);
+  var cell5= NewRow.insertCell(4);
+  cell5.innerHTML=`<button onClick='onEdit(this)'> Edit </button> 
+                    <button onClick= 'onDelete(this)'> Delete </button>`
 
   cell1.innerHTML = list1[x];
   cell2.innerHTML = list2[x];
@@ -113,6 +129,23 @@ function AddRow(){
 
   n++;
   x++;
-}
 
-}
+  function onDelete(){
+    document.getElementById('fname').value='';
+    document.getElementById('lname').value='';
+    document.getElementById('email').value='';
+    document.getElementById('mobile').value='';
+    
+  }
+    
+  
+  function onEdit(){
+    selectedRow=td.parentElement.parentElement;
+    document.getElementById('fname').value = selectedRow.cells[0].innerHTML;
+    document.getElementById('lname').value = selectedRow.cells[0].innerHTML;
+    document.getElementById('email').value = selectedRow.cells[0].innerHTML;
+    document.getElementById('mobile').value = selectedRow.cells[0].innerHTML;
+  }  
+
+
+  }
