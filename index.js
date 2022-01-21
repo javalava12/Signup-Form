@@ -61,18 +61,6 @@ function checkInputs() {
 	const emailValue = email.value.trim();
 	const passwordValue = password.value.trim();
 	const password2Value = password2.value.trim();
-
-  function setErrorFor(input, message) {
-    const formControl = input.parentElement;
-    const small = formControl.querySelector('small');
-    formControl.className = 'form-control error';
-    small.innerText = message;
-  }
-  
-  function setSuccessFor(input) {
-    const formControl = input.parentElement;
-    formControl.className = 'form-control success';
-  }
 	
 	if(firstnameValue === '') {
     setErrorFor(firstname, "Enter a valid name")
@@ -132,6 +120,18 @@ function checkInputs() {
 	}
 
 }
+
+function setErrorFor(input, message) {
+  const formControl = input.parentElement;
+  const small = formControl.querySelector('small');
+  formControl.className = 'form-control error';
+  small.innerText = message;
+}
+
+function setSuccessFor(input) {
+  const formControl = input.parentElement;
+  formControl.className = 'form-control success';
+}
     var list1 = [];
 		var list2 = [];
 		var list3 = [];
@@ -156,7 +156,7 @@ function checkInputs() {
   var cell4 = NewRow.insertCell(3);
   var cell5= NewRow.insertCell(4);
   cell5.innerHTML=`<button onClick='onEdit(this)'> Edit </button> 
-                    <button onClick= 'onDelete(this)'> Delete </button>`
+                    <button class= "btnDelete" onClick= 'onDelete(this)'> Delete </button>`
 
   cell1.innerHTML = list1[x];
   cell2.innerHTML = list2[x];
@@ -166,14 +166,14 @@ function checkInputs() {
   n++;
   x++;
   
-  if(inputs===''){
-    // btnClear.addEventListener('click', ()=>{
-    //   inputs.forEach(input=> input.value='');
-    // })
-  }
-  
 }
 
+//delete
+$(document).ready(function(){
+  $(".btnDelete").on('click', function(){
+    $(this).closest("th").remove();
+  })
+})
 
 
   // function onDelete(){
@@ -194,5 +194,7 @@ function checkInputs() {
   // }  
 
 
+  
+  
   
   
