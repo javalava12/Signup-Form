@@ -1,4 +1,4 @@
-var selectedRow= null;
+
 let btnClear= document.querySelector('button');
 let inputs= document.querySelectorAll('input');
 
@@ -10,35 +10,6 @@ const mobile = document.getElementById('mobile');
 const password = document.getElementById('password');
 const password2 = document.getElementById('password2');
 
-// let formData= JSON.parse(localStorage.getItem('formData')) || [];
-
-const fsubmit = e => {
-  let fname = document.getElementById('fname').value,
-      lname = document.getElementById('lname').value,
-      email = document.getElementById('email').value,
-      mobile = document.getElementById('mobile').value;
-
-  let formData = JSON.parse(localStorage.getItem('formData')) || [];
-
-  let exist = formData.length && 
-      JSON.parse(localStorage.getItem('formData')).some(data => 
-          data.fname.toLowerCase() == fname.toLowerCase() && 
-          data.lname.toLowerCase() == lname.toLowerCase()
-      );
-
-  if(!exist){
-      formData.push({ fname, lname, email, pwd });
-      localStorage.setItem('formData', JSON.stringify(formData));
-      document.querySelector('form').reset();
-      document.getElementById('fname').focus();
-      alert("Account Created.\n\nPlease Sign In using the link below.");
-  }
-  else{
-      alert("Ooopppssss... Duplicate found!!!\nYou have already submitted");
-  }
-  e.preventDefault();
-}
-
 
 form.addEventListener('submit', e => {
   btnClear.click();
@@ -46,9 +17,6 @@ form.addEventListener('submit', e => {
 
 	e.preventDefault();
 	checkInputs();
-  // btnClear.addEventListener('click', ()=>{
-  //   inputs.forEach(input=> input.value='');
-  // })
 });
 
 
@@ -132,6 +100,7 @@ function setSuccessFor(input) {
   const formControl = input.parentElement;
   formControl.className = 'form-control success';
 }
+
     var list1 = [];
 		var list2 = [];
 		var list3 = [];
@@ -156,7 +125,7 @@ function setSuccessFor(input) {
   var cell4 = NewRow.insertCell(3);
   var cell5= NewRow.insertCell(4);
   cell5.innerHTML=`<button onClick='onEdit(this)'> Edit </button> 
-                    <button class= "btnDelete" onClick= 'onDelete(this)'> Delete </button>`
+                    <button class= "btnDelete" onClick= 'deleteRow()'> Delete </button>`
 
   cell1.innerHTML = list1[x];
   cell2.innerHTML = list2[x];
@@ -165,36 +134,18 @@ function setSuccessFor(input) {
 
   n++;
   x++;
+
+  }
+
   
-}
+  // let formData= JSON.parse(localStorage.getItem('formData')) || [];
+
 
 //delete
-$(document).ready(function(){
-  $(".btnDelete").on('click', function(){
-    $(this).closest("th").remove();
-  })
-})
-
-
-  // function onDelete(){
-  //   document.getElementById('fname').value='';
-  //   document.getElementById('lname').value='';
-  //   document.getElementById('email').value='';
-  //   document.getElementById('mobile').value='';
-    
-  // }
-    
-  
-  // function onEdit(){
-  //   selectedRow=td.parentElement.parentElement;
-  //   document.getElementById('fname').value = selectedRow.cells[0].innerHTML;
-  //   document.getElementById('lname').value = selectedRow.cells[0].innerHTML;
-  //   document.getElementById('email').value = selectedRow.cells[0].innerHTML;
-  //   document.getElementById('mobile').value = selectedRow.cells[0].innerHTML;
-  // }  
-
-
-  
-  
-  
-  
+function deleteRow(){
+  $(document).ready(function () {
+    $(".btnDelete").on('click', function () {
+      $(this).closest("tr").remove();
+    });
+  });
+}
