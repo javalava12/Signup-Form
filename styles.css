@@ -1,7 +1,9 @@
-* {
-	box-sizing: border-box;
-}
 
+body{
+  /* background-color: #5F9EA0; */
+	font-family: 'Open Sans', sans-serif;
+	
+}
 body > table{
   width: 80%;
 }
@@ -9,12 +11,16 @@ body > table{
 	border-bottom: 1px solid #f0f0f0;
 	background-color: #077886;
 	padding: 20px 40px;
-  align-items: center;
+  
+}
+h2{
+  
+  color:#dddddd;
+  text-align: center;
 }
 
 .header h2 {
 	margin: 0;
-  align-items: center;
 }
 .container{
   border-radius: 5px;
@@ -53,8 +59,29 @@ body > table{
 	border-color: #777;
 }
 
+.form-control.success input {
+	border-color: #2ecc71;
+}
+
+.form-control.error input {
+	border-color: #e74c3c;
+} 
+
+.form-control small {
+	color: #e74c3c;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	visibility: hidden;
+}
+
+.form-control.error small {
+	visibility: visible;
+}
+
 table{
   border-collapse: collapse;
+  /* color: #f0f0f0z; */
 }
 table.list{
   width:100%;
@@ -81,31 +108,46 @@ input[type=text], input[type=number] {
 
 input[type=submit]{
   width: 30%;
-  background-color: #ddd;
-  color: #000;
+  background-color: #008b8b;
+  color: #fff;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
-
-form div.form-action-buttons{
-  text-align: center;
+.form button {
+	background-color: #008b8b;
+	border: 2px solid #008b8b;
+	border-radius: 4px;
+	color: #fff;
+	display: block;
+	font-family: inherit;
+	font-size: 16px;
+	padding: 10px;
+	margin-top: 20px;
+	width: 100%;
+  cursor: pointer;
 }
+
+/* form div.form-action-buttons{
+  text-align: center;
+} */
 
 button{
   cursor: pointer;
-  text-decoration: underline;
-  color: #0000ee;
   margin-right: 4px;
 }
 
 label.validation-error{
   color:   red;
   margin-left: 5px;
+  
 }
 
 .hide{
   display:none;
+}
+.formerror {
+  color: red;
 }
