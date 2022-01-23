@@ -1,65 +1,56 @@
 
-let btnClear= document.querySelector('button');
-let inputs= document.querySelectorAll('input');
-
+var selectedRow = null
 const form = document.getElementById('form');
-const firstname = document.getElementById('fname');
-const lastname = document.getElementById('lname');
+const fullName = document.getElementById('fullname');
 const email = document.getElementById('email');
 const mobile = document.getElementById('mobile');
 const password = document.getElementById('password');
 const password2 = document.getElementById('password2');
 
+function onFormSubmit() {
+  
+    if (validate()) {
+        var formData = readFormData();
+        if (selectedRow == null){
+          insertNewRecord(formData);
+        }
+            
+        else{
+            updateRecord(formData);
+        }
+        resetForm();
+    }else{
+      checkInputs();
+    }
+    
+    
+}
 
-form.addEventListener('submit', e => {
-  btnClear.click();
-  inputs.forEach(input=> input.value='');
-
-	e.preventDefault();
-	checkInputs();
-});
 
 
+//Validation
+function checkInputs(){
+  const fullNameValue= document.getElementById("fullName").value.trim;
+  const emailValue= document.getElementById("email").value.trim;
+  const mobileValue= document.getElementById("mobile").value.trim;
+  const passwordValue= document.getElementById("password").value.trim;
+  const password2Value= document.getElementById("password2").value.trim;
 
-function checkInputs() {
-	
-	const firstnameValue = firstname.value.trim();
-  const lastnameValue = lastname.value.trim();
-  const mobileValue = mobile.value.trim();
-	const emailValue = email.value.trim();
-	const passwordValue = password.value.trim();
-	const password2Value = password2.value.trim();
-	
-	if(firstnameValue === '') {
-    setErrorFor(firstname, "Enter a valid name")
-  } else if(firstnameValue.length<=2){
-    setErrorFor(firstname, "First Name min 3 characters")
+  if(fullNameValue===''){
+    setErrorFor(fullName, "Enter a valid name")
+  }else if(fullNameValue.length<=2){
+    setErrorFor(fullName, "First Name min 3 characters")
+  }else{
+    setSuccessFor(fullName);
   }
-  else {
-		setSuccessFor(firstname);
-	}
 
-  if(lastnameValue === '') {
-		setErrorFor(lastname, "Enter a valid name");
-	} else if(lastnameValue.length<=2){
-    setErrorFor(lastname, "Last Name min 3 characters")
-  }
-  else {
-		setSuccessFor(lastname);
-	}
-	
-	if(emailValue === '') {
+  if(emailValue === '') {
 		setErrorFor(email, "Enter a valid email");
 	} else if (!isEmail(emailValue)) {
 		setErrorFor(email, 'Not a valid email');
 	} else {
 		setSuccessFor(email);
 	}
-
-  function isEmail(email) {
-    
-    return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
-  }
 
   if(mobileValue===''){
     setErrorFor(mobile, "Enter a valid mobile number")
@@ -101,51 +92,72 @@ function setSuccessFor(input) {
   formControl.className = 'form-control success';
 }
 
-    var list1 = [];
-		var list2 = [];
-		var list3 = [];
-		var list4 = [];
-
-		var n = 1;
-		var x = 0;
-
-  function AddRow(){
-
-  var AddRown = document.getElementById('show');
-  var NewRow = AddRown.insertRow(n);
-
-  list1[x] = document.getElementById("fname").value;
-  list2[x] = document.getElementById("lname").value;
-  list3[x] = document.getElementById("email").value;
-  list4[x] = document.getElementById("mobile").value;
-
-  var cell1 = NewRow.insertCell(0);
-  var cell2 = NewRow.insertCell(1);
-  var cell3 = NewRow.insertCell(2);
-  var cell4 = NewRow.insertCell(3);
-  var cell5= NewRow.insertCell(4);
-  cell5.innerHTML=`<button onClick='onEdit(this)'> Edit </button> 
-                    <button class= "btnDelete" onClick= 'deleteRow()'> Delete </button>`
-
-  cell1.innerHTML = list1[x];
-  cell2.innerHTML = list2[x];
-  cell3.innerHTML = list3[x];
-  cell4.innerHTML = list4[x];
-
-  n++;
-  x++;
-
-  }
-
+function isEmail(email) {
   
-  // let formData= JSON.parse(localStorage.getItem('formData')) || [];
+  return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+}
 
 
-//delete
-function deleteRow(){
-  $(document).ready(function () {
-    $(".btnDelete").on('click', function () {
-      $(this).closest("tr").remove();
-    });
-  });
+function readFormData() {
+  var formData = {};
+  formData["fullName"] = document.getElementById("fullName").value;
+  formData["email"] = document.getElementById("email").value;
+  formData["mobile"] = document.getElementById("mobile").value;
+  
+  return formData;
+}
+
+function insertNewRecord(data) {
+  var table = document.getElementById("signup").getElementsByTagName('tbody')[0];
+  var newRow = table.insertRow(table.length);
+  cell1 = newRow.insertCell(0);
+  cell1.innerHTML = data.fullName;
+  cell2 = newRow.insertCell(1);
+  cell2.innerHTML = data.email;
+  cell3 = newRow.insertCell(2);
+  cell3.innerHTML = data.mobile;
+
+  cell4 = newRow.insertCell(3);
+  cell4.innerHTML = `<button onClick="onEdit(this)">Edit</button>
+                     <button onClick="onDelete(this)">Delete</button>`;
+}
+
+function resetForm() {
+  document.getElementById("fullName").value = "";
+  document.getElementById("email").value = "";
+  document.getElementById("mobile").value = "";
+  selectedRow = null;
+}
+function onEdit(td) {
+  selectedRow = td.parentElement.parentElement;
+  document.getElementById("fullName").value = selectedRow.cells[0].innerHTML;
+  document.getElementById("email").value = selectedRow.cells[1].innerHTML;
+  document.getElementById("mobile").value = selectedRow.cells[2].innerHTML;
+}
+
+function updateRecord(formData) {
+  selectedRow.cells[0].innerHTML = formData.fullName;
+  selectedRow.cells[1].innerHTML = formData.email;
+  selectedRow.cells[2].innerHTML = formData.mobile;
+}
+
+function onDelete(td) {
+  if (confirm('Are you sure to delete this record ?')) {
+      row = td.parentElement.parentElement;
+      document.getElementById("signup").deleteRow(row.rowIndex);
+      resetForm();
+  }
+}
+
+function validate() {
+  isValid = true;
+  if (document.getElementById("fullName").value == "") {
+      isValid = false;
+      document.getElementById("fullNameValidationError").classList.remove("hide");
+  } else {
+      isValid = true;
+      if (!document.getElementById("fullNameValidationError").classList.contains("hide"))
+          document.getElementById("fullNameValidationError").classList.add("hide");
+  }
+  return isValid;
 }
