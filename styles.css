@@ -2,38 +2,30 @@
 	box-sizing: border-box;
 }
 
-body {
-	background-color: #5F9EA0;
-	font-family: 'Open Sans', sans-serif;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	min-height: 100vh;
-	margin: 10px;
-  padding: 20px;
+body > table{
+  width: 80%;
 }
-
-.container {
-	background-color: #fff;
-	border-radius: 3px;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0);
-	overflow: hidden;
-	width: 500px;
-	max-width: 80%;
-  display: block;
-}
-
 .header {
 	border-bottom: 1px solid #f0f0f0;
-	background-color: #f7f7f7;
+	background-color: #077886;
 	padding: 20px 40px;
+  align-items: center;
 }
 
 .header h2 {
 	margin: 0;
   align-items: center;
 }
-
+.container{
+  border-radius: 5px;
+  overflow: hidden;
+  width: 80%;
+	max-width: 80%;
+  display: block;
+  margin: auto;
+  
+  margin-left: 20%;
+}
 .form {
 	padding: 20px 20px;	
 }
@@ -43,12 +35,10 @@ body {
 	padding-bottom: 15px;
 	position: relative;
 }
-
 .form-control label {
 	display: inline-block;
 	margin-bottom: 5px;
 }
-
 .form-control input {
 	border: 2px solid #f0f0f0;
 	border-radius: 4px;
@@ -56,59 +46,66 @@ body {
 	font-family: inherit;
 	font-size: 14px;
 	padding: 10px;
-	width: 100%;
+	width: 80%;
 }
-
 .form-control input:focus {
 	outline: 0;
 	border-color: #777;
 }
 
-.form-control.success input {
-	border-color: #2ecc71;
+table{
+  border-collapse: collapse;
+}
+table.list{
+  width:100%;
 }
 
-.form-control.error input {
-	border-color: #e74c3c;
-} 
-
-.form-control small {
-	color: #e74c3c;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	visibility: hidden;
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(even),table.list thead>tr {
+  background-color: #dddddd;
 }
 
-.form-control.error small {
-	visibility: visible;
+input[type=text], input[type=number] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
-.form button {
-	background-color: #008b8b;
-	border: 2px solid #008b8b;
-	border-radius: 4px;
-	color: #fff;
-	display: block;
-	font-family: inherit;
-	font-size: 16px;
-	padding: 10px;
-	margin-top: 20px;
-	width: 100%;
+input[type=submit]{
+  width: 30%;
+  background-color: #ddd;
+  color: #000;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
 }
 
-
-table, td, th {
-  border: 1.5px solid black;
-	margin-left: 5vh;
+form div.form-action-buttons{
+  text-align: center;
 }
 
-table {
-  border-collapse: collapse;
-  width: 30%;
+button{
+  cursor: pointer;
+  text-decoration: underline;
+  color: #0000ee;
+  margin-right: 4px;
 }
 
-th {
-  height: 50px;
+label.validation-error{
+  color:   red;
+  margin-left: 5px;
+}
+
+.hide{
+  display:none;
 }
