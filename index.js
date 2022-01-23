@@ -7,26 +7,26 @@ const mobile = document.getElementById('mobile');
 const password = document.getElementById('password');
 const password2 = document.getElementById('password2');
 
+form.addEventListener('submit', e => {
+  e.preventDefault();
+	checkInputs();
+});
+
 function onFormSubmit() {
   
     if (validate()) {
         var formData = readFormData();
         if (selectedRow == null){
           insertNewRecord(formData);
-        }
-            
+        }  
         else{
             updateRecord(formData);
         }
         resetForm();
     }else{
       checkInputs();
-    }
-    
-    
+    }  
 }
-
-
 
 //Validation
 function checkInputs(){
@@ -150,6 +150,7 @@ function onDelete(td) {
 }
 
 function validate() {
+  
   isValid = true;
   if (document.getElementById("fullName").value == "") {
       isValid = false;
