@@ -4,73 +4,70 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
   <title>Signup Form</title>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h2>Signup Form</h2>
-
-    </div>
-    <form id="form" class="form" onsubmit="AddRow()">
-      <div class="form-control">
-        <label for="name">First Name</label>
-        <input type="text" placeholder="First Name" id="fname" />
-        <small>Error message</small>
-      </div>
-
-      <div class="form-control">
-        <label for="name">Last Name</label>
-        <input type="text" placeholder="Last Name" id="lname" />
-        <small>Error message</small>
-      </div>
-
-      <div class="form-control">
-        <label for="name">Email ID</label>
-        <input type="email" placeholder="abc123@domain.com" id="email" />
-        <small>Error message</small>
-      </div>
-
-      <div class="form-control">
-        <label for="name">Mobile Number</label>
-        <input type="phone" placeholder="0123456789" id="mobile" />
-        <small>Error message</small>
-      </div>
-
-      <div class="form-control">
-        <label for="name">Password</label>
-        <input type="password" placeholder="Password" id="password"/>
-        <small>Error message</small>
-      </div>
-
-      <div class="form-control">
-        <label for="name">Confirm Password</label>
-        <input type="password" placeholder="Verify Password " id="password2"/>
-        <small>Error message</small>
-      </div>
-
-      <button id="submit" type="submit">Submit</button>
-    </form>
-    
+  <div class="header">
+    <h2>Signup Form</h2>
   </div>
+  <table class="container">
+    <tr>
+        <td>
+            <form id="form" onsubmit="event.preventDefault();onFormSubmit();" autocomplete="off">
+                <div class="form-control">
+                    <label>Full Name*</label><label class="validation-error hide" id="fullNameValidationError">This field is required.</label>
+                    <input type="text"  id="fullName">
+                    <div id="full-name-err"></div>
+                </div>
+                
+                <div class="form-control">
+                    <label>Email Address</label>
+                    <input type="email"  id="email">
+                    <div id="email-err"></div>
+                </div>
+                <div class="form-control">
+                    <label>Mobile Number</label>
+                    <input type="phone"  id="mobile">
+                    <div id="phone-err"></div>
+                </div>
+                <div class="form-control">
+                    <label>Password</label>
+                    <input type="password"  id="pass">
+                    <div id="password-err"></div>
+                </div>
+                <div class="form-control">
+                    <label>Confirm Password</label>
+                    <input type="password"  id="pass2">
+                    <div id="password2-err"></div>
+                </div>
+                <div  class="form-action-buttons">
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+        </td>
+        <td>
+            <table class="list" id="signup">
+                <thead>
+                    <tr>
+                        <th>Full Name</th>
+                        <th>Email Address</th>
+                        <th>Mobile Number</th>
+                        <th>Action Buttons</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </td>
+    </tr>
+</table>
 
 
-  <table id="show">
-    <thead>
-      <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>Mobile Number</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-  </table>
 
-<script src="index.js">
+  <script src="index.js"></script>
   
-</script>
 </body>
 </html>
